@@ -33,13 +33,23 @@ bool Sphere::has_collided(Sphere* b) {
 	double radi2 = std::pow(this->radius + b->radius, 2);
 	if (dist2 < radi2) {
 		// This code is causing my balls to disappear
-		/* double angle = atan((this->py - b->py) / (this->px - b->px));
+		double dy = (this->py - b->py);
+		double dx = (b->px - this->px);
+		double angle = atan(dy / dx);
+		if (((dx > 0) && (dy < 0)) || ((dx > 0) && (dy < 0))) {
+			double sin = std::sin(angle) * (this->radius + b->radius);
+			this->py = std::ceil(b->py + sin);
 
-		double sin = std::sin(angle) * (this->radius + b->radius);
-		this->px = std::ceil(b->py - sin);
+			double cos = std::cos(angle) * (this->radius + b->radius);
+			this->px = std::ceil(b->px + cos);
+		}
+		else {
+			double sin = std::sin(angle) * (this->radius + b->radius);
+			this->py = std::ceil(b->py - sin);
 
-		double cos = std::cos(angle) * (this->radius + b->radius);
-		this->py = std::ceil(b->px - cos); */
+			double cos = std::cos(angle) * (this->radius + b->radius);
+			this->px = std::ceil(b->px - cos);
+		}
 		return true;
 	} else {
 		return false;
