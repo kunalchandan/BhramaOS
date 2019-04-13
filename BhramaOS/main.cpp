@@ -18,29 +18,28 @@ int main()
 	ALLEGRO_DISPLAY* display = al_create_display(len * sca, len * sca);
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
+	Sphere* sss = new Sphere(90, 90, 2, 20, 300, 2, 2);
 	Sphere* ss = new Sphere(30, 30, 2, 200, 300, 2, 2);
 	Sphere* s = new Sphere(50, 50, 2, 110, 110, -2, 2);
 	
-	std::vector<Sphere*> sphere = { ss, s };
+	std::vector<Sphere*> sphere = { sss, ss, s };
 	
 	ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
 
 	for (int t = 0; t < 1000000; t++) {
 		
 		std::cout << "STEP:: " << t << std::endl;
-		int n = 0;
 		for (int i = 0; i < sphere.size(); i++) {
 			// Render and move objects
 			sphere[i]->render();
 			sphere[i]->step();
 
 			// Allow Collisions with other bodies
-			for (int j = i+1; j < sphere.size()-n; j++) {
+			for (int j = i+1; j < sphere.size(); j++) {
 				if (sphere[i]->has_collided(sphere[j])) {
 					Abstract_Object::collide(sphere[i], sphere[j]);
 				}
 			}
-			n++;
 
 			// Collide with Walls
 			sphere[i]->hit_wall(len*sca, len*sca);

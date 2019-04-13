@@ -2,6 +2,7 @@
 #include "Sphere.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include <iostream>
 #include <cmath>
 #include <math.h>
 
@@ -29,26 +30,23 @@ void Sphere::render() {
 
 bool Sphere::has_collided(Sphere* b) {
 	// if distance^2 < bigRadius^2
+	//TODO:: Elastic vs Inelastic collision
+	// Calculate Inelastic and make final velocities a percenatage of each.
 	double dist2 = std::pow(this->px - b->px, 2) + std::pow(this->py - b->py, 2);
 	double radi2 = std::pow(this->radius + b->radius, 2);
 	if (dist2 < radi2) {
-		// This code is causing my balls to disappear
 		double dy = (this->py - b->py);
-		double dx = (b->px - this->px);
-		double angle = atan(dy / dx);
-		if (((dx > 0) && (dy < 0)) || ((dx > 0) && (dy < 0))) {
-			double sin = std::sin(angle) * (this->radius + b->radius);
-			this->py = std::ceil(b->py + sin);
+		double dx = (this->px - b->px);
 
-			double cos = std::cos(angle) * (this->radius + b->radius);
-			this->px = std::ceil(b->px + cos);
-		}
-		else {
-			double sin = std::sin(angle) * (this->radius + b->radius);
-			this->py = std::ceil(b->py - sin);
+		double dist = sqrt(dist2);
+		double radi = this->radius + b->radius;
+		double ratio = radi / dist;
 
-			double cos = std::cos(angle) * (this->radius + b->radius);
-			this->px = std::ceil(b->px - cos);
+		this->py = b->py + dy * ratio;
+		this->px = b->px + dx * ratio;
+
+		for (int x = 0; x < 1; x++) {
+			std::cout << dx << " -- " << dy << " -- " << std::endl;
 		}
 		return true;
 	} else {
