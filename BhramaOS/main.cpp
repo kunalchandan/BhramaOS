@@ -21,7 +21,8 @@ int main()
 	Sphere* sss = new Sphere(90, 90, 2, 20, 300, 2, 2);
 	Sphere* ss = new Sphere(30, 30, 2, 200, 300, 2, 2);
 	Sphere* s = new Sphere(50, 50, 2, 110, 110, -2, 2);
-	
+	ss->color = al_map_rgb(24, 235, 39);
+	s->color = al_map_rgb(224, 23, 149);
 	std::vector<Sphere*> sphere = { sss, ss, s };
 	
 	ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);

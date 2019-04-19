@@ -24,8 +24,7 @@ Sphere::Sphere(double radius, double mass, double charge, double posx, double po
 }
 
 void Sphere::render() {
-	ALLEGRO_COLOR white = al_map_rgb(255, 255, 255);
-	al_draw_filled_circle(this->px, this->py, this->radius, white);
+	al_draw_filled_circle(this->px, this->py, this->radius, this->color);
 }
 
 bool Sphere::has_collided(Sphere* b) {
@@ -40,14 +39,10 @@ bool Sphere::has_collided(Sphere* b) {
 
 		double dist = sqrt(dist2);
 		double radi = this->radius + b->radius;
-		double ratio = radi / dist;
+		double ratio = (radi + 1) / dist;
 
 		this->py = b->py + dy * ratio;
 		this->px = b->px + dx * ratio;
-
-		for (int x = 0; x < 1; x++) {
-			std::cout << dx << " -- " << dy << " -- " << std::endl;
-		}
 		return true;
 	} else {
 		return false;

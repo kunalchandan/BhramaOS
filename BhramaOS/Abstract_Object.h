@@ -1,4 +1,7 @@
 #pragma once
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_primitives.h>
+
 class Abstract_Object
 {
 public:
@@ -8,6 +11,7 @@ public:
 	double ix, iy;
 	double charge;
 	double m;
+	ALLEGRO_COLOR color = al_map_rgb(255, 255, 255);
 
 	void step();
 
