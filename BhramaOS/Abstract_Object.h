@@ -9,6 +9,9 @@ public:
 	double vx, vy;
 	double ax, ay;
 	double ix, iy;
+	
+	double theta, omega, alpha, zeta;
+
 	double charge;
 	double m;
 	ALLEGRO_COLOR color = al_map_rgb(255, 255, 255);

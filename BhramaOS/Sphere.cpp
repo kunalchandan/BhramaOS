@@ -7,11 +7,16 @@
 #include <math.h>
 
 
-Sphere::Sphere(double radius, double mass, double charge, double posx, double posy, double velx, double vely) {
+Sphere::Sphere(double radius, double mass, double charge, double posx, double posy, double velx, double vely, double theta, double omega) {
 	this->charge = charge;
 	this->radius = radius;
 	set_mass(mass);
 	
+	this->theta = theta;
+	this->omega = omega;
+	this->alpha = 0;
+	this->zeta  = 0;
+
 	this->px = posx;
 	this->py = posy;
 
@@ -25,6 +30,11 @@ Sphere::Sphere(double radius, double mass, double charge, double posx, double po
 
 void Sphere::render() {
 	al_draw_filled_circle(this->px, this->py, this->radius, this->color);
+	for(int x = this->radius; x > 1; x -= 10){
+		al_draw_filled_circle(this->px + x * cos(this->theta), 
+							  this->py + x * sin(this->theta), 
+							  3, al_map_rgb(0, 0, 0));
+	}
 }
 
 bool Sphere::has_collided(Sphere* b) {

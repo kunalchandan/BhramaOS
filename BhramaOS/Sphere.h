@@ -5,7 +5,7 @@ class Sphere :
 {
 public:
 	double radius;
-	Sphere(double radius, double mass, double charge, double posx, double posy, double velx, double vely);
+	Sphere(double radius, double mass, double charge, double posx, double posy, double velx, double vely, double theta, double omega);
 	
 	void render() override;
 
