@@ -22,6 +22,9 @@ public:
 
 	static void collide(Abstract_Object* a, Abstract_Object* b);
 
+	static void gauss(Abstract_Object* a, Abstract_Object* b);
+
 	virtual void render() = 0;
+
 };
 

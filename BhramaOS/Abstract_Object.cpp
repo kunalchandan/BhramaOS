@@ -24,6 +24,25 @@ void Abstract_Object::set_mass(double m) {
 	this->m = std::max(std::numeric_limits<double>::epsilon(), m);
 }
 
+
+void Abstract_Object::gauss(Abstract_Object* a, Abstract_Object* b) {
+	if (a->charge == 0 || b->charge == 0) {
+		double k = 100000;
+
+		double r2 = pow(a->px - b->px, 2) + pow(a->py - b->py, 2);
+		double f_e = k*(a->charge*b->charge)/r2;
+		double unit[2] = {(a->px - b->px)/r2, (a->py - b->py)/r2};
+		double f_e_ab = f_e / b->m;
+		double f_e_ba = f_e / a->m;
+
+		b->ax += f_e_ab;
+		a->ax -= f_e_ba;
+
+		b->ay += f_e_ab;
+		a->ay -= f_e_ba;
+	}
+}
+
 void Abstract_Object::collide(Abstract_Object* m1, Abstract_Object* m2) {
 	// Collisions will be restricted to ridgid body approximately inelastic collisions
 	// Should I ever implement soft bodies this must change

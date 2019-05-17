@@ -18,9 +18,9 @@ int main()
 	ALLEGRO_DISPLAY* display = al_create_display(len * sca, len * sca);
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
-	Sphere* sss = new Sphere(90, 90, 2, 20, 300, 2, 2, 0, +0.05);
-	Sphere* ss = new Sphere(30, 30, 2, 200, 300, 2, 2, 0, -0.19);
-	Sphere* s = new Sphere(50, 50, 2, 110, 110, -2, 2, 2, -0.01);
+	Sphere* sss = new Sphere(90, 90, 50, 20, 300, 2, 2, 0, +0.05);
+	Sphere* ss = new Sphere(30, 30, 50, 200, 300, 2, 2, 0, -0.19);
+	Sphere* s = new Sphere(50, 50, 50, 110, 110, -2, 2, 2, -0.01);
 	ss->color = al_map_rgb(24, 235, 39);
 	s->color = al_map_rgb(224, 23, 149);
 	std::vector<Sphere*> sphere = { sss, ss, s };
@@ -39,6 +39,7 @@ int main()
 			for (int j = i+1; j < sphere.size(); j++) {
 				if (sphere[i]->has_collided(sphere[j])) {
 					Abstract_Object::collide(sphere[i], sphere[j]);
+					Abstract_Object::gauss(sphere[i], sphere[j]);
 				}
 			}
 
