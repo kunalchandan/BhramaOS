@@ -24,10 +24,17 @@ void Abstract_Object::set_mass(double m) {
 	this->m = std::max(std::numeric_limits<double>::epsilon(), m);
 }
 
-
+// This function must be run only ONCE per pair of objects
 void Abstract_Object::gauss(Abstract_Object* a, Abstract_Object* b) {
-	if (a->charge == 0 || b->charge == 0) {
-		double k = 100000;
+	// As of right now this is simply an approximation by using:
+	// F = (k*q_1*q_2)/r^2
+	// This should eventually do something like:
+	// dF = (k*dq_1*dq_2)/r^2
+	// and find the integral value, and finally apply the net force. 
+	// Keep in mind this method requires knowledge of the charge distribution.
+	if ( ! ((a->charge == 0) || (b->charge == 0)) ) {
+		// Consider storing this constant *k* elsewhere as it is a 'universal' constant
+		double k = 1;
 
 		double r2 = pow(a->px - b->px, 2) + pow(a->py - b->py, 2);
 		double f_e = k*(a->charge*b->charge)/r2;
@@ -43,6 +50,7 @@ void Abstract_Object::gauss(Abstract_Object* a, Abstract_Object* b) {
 	}
 }
 
+// This function must be run only ONCE per pair of objects
 void Abstract_Object::collide(Abstract_Object* m1, Abstract_Object* m2) {
 	// Collisions will be restricted to ridgid body approximately inelastic collisions
 	// Should I ever implement soft bodies this must change
