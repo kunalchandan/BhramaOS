@@ -59,21 +59,21 @@ bool Sphere::has_collided(Sphere* b) {
 	}
 }
 
-void Sphere::hit_wall(double x_max, double y_max) {
+void Sphere::hit_wall(double x_max, double y_max, double loss_ratio) {
 	if (this->px + this->radius > x_max) {
-		this->vx = -this->vx;
+		this->vx = -this->vx*loss_ratio;
 		this->px = x_max - this->radius;
 	} 
 	else if (this->px - this->radius < 0) {
-		this->vx = -this->vx;
+		this->vx = -this->vx*loss_ratio;
 		this->px = this->radius;
 	}
 	if (this->py + this->radius > y_max) {
-		this->vy = -this->vy;
+		this->vy = -this->vy*loss_ratio;
 		this->py = y_max - this->radius;
 	} 
 	else if (this->py - this->radius < 0) {
-		this->vy = -this->vy;
+		this->vy = -this->vy*loss_ratio;
 		this->py = this->radius;
 	}
 }

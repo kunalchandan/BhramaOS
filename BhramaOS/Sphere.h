@@ -11,7 +11,7 @@ public:
 
 	bool has_collided(Sphere* b);
 
-	void hit_wall(double x_max, double y_max);
+	void hit_wall(double x_max, double y_max, double loss_ratio);
 
 	~Sphere();
 };
