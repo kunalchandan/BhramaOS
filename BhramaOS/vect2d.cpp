@@ -16,19 +16,15 @@ Vector2::Vector2(double X, double Y) {
 Vector2 operator+(Vector2 const &v1, Vector2 const &v2) {
 	return Vector2(v1.x + v2.x, v1.y + v2.y);
 }
-
 Vector2 operator-(Vector2 const &v1, Vector2 const &v2) {
 	return Vector2(v1.x - v2.x, v1.y - v2.y);
 }
-
 Vector2 operator*(Vector2 const &v1, Vector2 const &v2) {
 	return Vector2(v1.x * v2.x, v1.y * v2.y);
 }
-
 Vector2 operator/(Vector2 const &v1, Vector2 const &v2) {
 	return Vector2(v1.x / v2.x, v1.y / v2.y);
 }
-
 bool operator==(Vector2 const &v1, Vector2 const &v2) {
 	return (v1.x == v2.x) && (v1.y == v2.y);
 }

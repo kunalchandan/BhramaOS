@@ -1,14 +1,15 @@
 #pragma once
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include "vect2d.cpp"
 
 class Abstract_Object
 {
 public:
-	double px, py;
-	double vx, vy;
-	double ax, ay;
-	double ix, iy;
+	Vector2 p;
+	Vector2 v;
+	Vector2 a;
+	Vector2 i;
 	
 	double theta, omega, alpha, zeta;
 
