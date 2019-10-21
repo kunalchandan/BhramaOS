@@ -28,6 +28,17 @@ public:
 		this->y /= rhs.y;
 		return *this;
 	}
+	bool operator==(Vector2 const &rhs) {
+		// Only does strict double comparisons 
+		// If you want loose comparison within some comparison margin, we will talk
+		// TODO:: Maybe implement loose comparisons
+		if (this->x == rhs.x && this->y == rhs.y) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	~Vector2();
 };
