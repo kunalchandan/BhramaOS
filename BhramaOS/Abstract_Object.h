@@ -1,7 +1,7 @@
 #pragma once
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
-#include "vect2d.cpp"
+#include "vect2d.h"
 
 class Abstract_Object
 {
