@@ -1,7 +1,8 @@
 #pragma once
 #include <cmath>
 // TODO :: Convert to namespace
-double CELL_EPSILON = pow(2.0, -10);
-class sim_consts
-{
-};
+namespace sim_consts {
+	extern double CELL_EPSILON;
+	extern double RHO_WATER;
+	double extern RHO_OIL;
+}
