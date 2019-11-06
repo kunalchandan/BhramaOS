@@ -6,14 +6,16 @@
 #include <type_traits>
 #include <algorithm>
 
+// Use better integration, hope that the compiler will optimize this.
 void Abstract_Object::step() {
+	theta += omega + (alpha/2) + (zeta/6);
+	omega += alpha + (zeta /2);
 	alpha += zeta;
-	omega += alpha;
-	theta += omega;
 
+	// Using integration get new position, velocity, acceleration
+	p += v + (a/2) + (i/6);
+	v += a + (i/2);
 	a += i;
-	v += a;
-	p += v;
 }
 
 void Abstract_Object::set_mass(double m) {
@@ -69,7 +71,7 @@ void Abstract_Object::collide(Abstract_Object* m1, Abstract_Object* m2) {
 	Vector2 m1vi = m1->v;
 
 	m1->v = (((m1->m - m2->m) / (m1->m + m2->m))*m1->v) + (((2 * m2->m) / (m1->m + m2->m))*m2->v);
-
+	m1->v = m1->v * 0.999;
 	m2->v = (((m2->m - m1->m) / (m2->m + m1->m))*m2->v) + (((2 * m1->m) / (m2->m + m1->m))*m1vi);
-	
+	m2->v = m2->v * 0.999;
 }
